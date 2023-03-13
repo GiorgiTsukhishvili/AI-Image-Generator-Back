@@ -10,6 +10,9 @@ return new class () extends Migration {
         Schema::create('open_ai_images', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('description');
+            $table->text('image');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
