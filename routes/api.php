@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OpenAiImageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(OpenAiImageController::class)->group(function () {
     Route::post('/ai-image', 'store')->name('ai-images.store');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::post('/login', 'login')->name('user.login');
+    Route::post('/user', 'store')->name('user.store');
 });
