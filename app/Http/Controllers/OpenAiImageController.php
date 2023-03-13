@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OpenAiImageRequest;
+use App\Models\OpenAiImage;
 use Illuminate\Http\Request;
 
 class OpenAiImageController extends Controller
@@ -16,12 +17,14 @@ class OpenAiImageController extends Controller
             'response_format' => 'url',
         ]);
 
+        $data = [
+            'user_id' => auth()->user()->id,
+            'description' => $request->prompt,
+            'image' => $response->toArray()['data'][0]['url']
+        ];
 
-        foreach ($response->data as $data) {
-            $data->url; // 'https://oaidalleapiprodscus.blob.core.windows.net/private/...'
-            $data->b64_json; // null
-        }
+        $image = OpenAiImage::create($data);
 
-        return $response->toArray();
+        return response()->json(['message' => 'Image created successfully', 'data' => $image], 201);
     }
 }

@@ -9,6 +9,7 @@ class OpenAiImage extends Model
 {
     use HasFactory;
 
+    public $fillable = ['image', 'user_id', 'description'];
 
     public function user()
     {
