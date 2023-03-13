@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function login()
-    {
-    }
-
     public function store(UserStoreRequest $request)
     {
         $data = [
