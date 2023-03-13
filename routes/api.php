@@ -27,4 +27,5 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(UserAuthController::class)->group(function () {
     Route::post('/login', 'login')->name('user-auth.login');
+    Route::get('/logout', 'logout')->name('user-auth.logout');
 });

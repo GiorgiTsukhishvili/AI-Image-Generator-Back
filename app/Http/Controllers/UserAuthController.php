@@ -23,4 +23,14 @@ class UserAuthController extends Controller
 
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
+
+
+    public function logout()
+    {
+        auth()->guard('web')->logout;
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return response()->json(['message' => 'User logged out successfully'], 201);
+    }
 }
